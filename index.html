@@ -260,10 +260,10 @@ document.querySelectorAll('.skill-img').forEach(img => {
     <a href="https://www.linkedin.com/feed/" class="hover-glow">
       <img src="./images/icons8-in-50 (1).png" alt="images" class="w-[5vh]">
     </a>
-    <a href="#" class="hover-glow">
+    <a href="https://www.facebook.com/profile.php?id=61557493059515" class="hover-glow">
       <img src="./images/icons8-facebook-50.png" alt="images" class="w-[5vh]">
     </a>
-    <a href="#" class="hover-glow">
+    <a href="https://www.instagram.com/invites/contact/?utm_source=ig_contact_invite&utm_medium=copy_link&utm_content=rn36xa7" class="hover-glow">
       <img src="./images/icons8-instagram-logo-50.png" alt="images" class="w-[5vh]">
     </a>
     <a href="#" class="hover-glow">
@@ -289,15 +289,73 @@ document.querySelectorAll('.skill-img').forEach(img => {
 
       </div>
     </div>
-    <div>
-      <h3 class="text-3xl md:text-4xl pb-5">CONTACT FORM</h3>
-      <label for="name" class="block text-xl md:text-2xl pb-3 text-white">Name:</label>
-      <input type="text" id="name" name="name" placeholder="Enter your name" class="w-full md:w-auto px-5 md:px-20 py-3 rounded-lg border">
-      <label for="email" class="block text-xl md:text-2xl pb-3 text-white pt-5">Email:</label>
-      <input type="text" name="email" placeholder="Enter your email" class="w-full md:w-auto px-5 md:px-20 py-3 rounded-lg border">
-      <label for="Message" class="block text-xl md:text-2xl pb-3 text-white pt-5">Message:</label>
-      <input type="text" name="Message" placeholder="Enter your Message" class="w-full md:w-auto px-5 md:px-20 py-3 rounded-lg border">
-    </div>
-  </footer>
+<div class="flex flex-col">
+  <h3 class="text-3xl md:text-4xl pb-5">CONTACT FORM</h3>
+
+  <label for="name" class="block text-xl md:text-2xl pb-3 text-white">Name:</label>
+  <input type="text" id="name" name="name" placeholder="Enter your name" class="w-full md:w-auto px-5 md:px-20 py-3 rounded-lg border">
+
+  <label for="email" class="block text-xl md:text-2xl pb-3 text-white pt-5">Email:</label>
+  <input type="email" name="email" placeholder="Enter your email" class="w-full md:w-auto px-5 md:px-20 py-3 rounded-lg border">
+
+  <label for="Message" class="block text-xl md:text-2xl pb-3 text-white pt-5">Message:</label>
+  <input type="text" name="Message" placeholder="Enter your Message" class="w-full md:w-auto px-5 md:px-20 py-3 rounded-lg border">
+
+  <button id="sendBtn" class="bg-cyan-500 hover:bg-cyan-700 text-white font-semibold px-6 py-2 rounded-xl mt-6">
+  SEND
+</button>
+
+</div>
+
+</footer>
+ <script src="https://www.gstatic.com/firebasejs/12.3.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/12.3.0/firebase-firestore-compat.js"></script>
+
+<script>
+  const firebaseConfig = {
+    apiKey: "AIzaSyC3wUvbiPEl3sSJ8FpAaA8vx1zP-acy0oY",
+    authDomain: "website-authentication-90563.firebaseapp.com",
+    projectId: "website-authentication-90563",
+    storageBucket: "website-authentication-90563.firebasestorage.app",
+    messagingSenderId: "52149278515",
+    appId: "1:52149278515:web:e1c302e1c54087d5825046",
+    measurementId: "G-VDFRNQ96ED"
+  };
+
+  firebase.initializeApp(firebaseConfig);
+  const db = firebase.firestore();
+
+  document.querySelector("button").addEventListener("click", (e) => {
+    e.preventDefault();
+
+    const name = document.getElementById("name").value.trim();
+    const email = document.getElementsByName("email")[0].value.trim();
+    const message = document.getElementsByName("Message")[0].value.trim();
+
+    if (!name || !email || !message) {
+      alert("Please fill all fields!");
+      return;
+    }
+
+    db.collection("contacts").add({
+      name,
+      email,
+      message,
+      timestamp: new Date().toLocaleString()
+    })
+    .then(() => {
+      alert("Message sent successfully!");
+      document.getElementById("name").value = "";
+      document.getElementsByName("email")[0].value = "";
+      document.getElementsByName("Message")[0].value = "";
+    })
+    .catch((error) => {
+      alert("Error sending message!");
+      console.error(error);
+    });
+  });
+</script>
+
+
 </body>
 </html>
