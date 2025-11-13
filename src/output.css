@@ -11,8 +11,15 @@
     --color-cyan-500: oklch(71.5% 0.143 215.221);
     --color-cyan-600: oklch(60.9% 0.126 221.723);
     --color-cyan-700: oklch(52% 0.105 223.128);
+    --color-blue-100: oklch(93.2% 0.032 255.585);
+    --color-blue-200: oklch(88.2% 0.059 254.128);
     --color-blue-400: oklch(70.7% 0.165 254.624);
     --color-blue-800: oklch(42.4% 0.199 265.638);
+    --color-blue-900: oklch(37.9% 0.146 265.522);
+    --color-gray-100: oklch(96.7% 0.003 264.542);
+    --color-gray-600: oklch(44.6% 0.03 256.802);
+    --color-gray-700: oklch(37.3% 0.034 259.733);
+    --color-gray-800: oklch(27.8% 0.033 256.848);
     --color-white: #fff;
     --spacing: 0.25rem;
     --text-sm: 0.875rem;
@@ -194,9 +201,6 @@
   .mx-5 {
     margin-inline: calc(var(--spacing) * 5);
   }
-  .-mt-10 {
-    margin-top: calc(var(--spacing) * -10);
-  }
   .mt-2 {
     margin-top: calc(var(--spacing) * 2);
   }
@@ -223,6 +227,9 @@
   }
   .ml-6 {
     margin-left: calc(var(--spacing) * 6);
+  }
+  .ml-9 {
+    margin-left: calc(var(--spacing) * 9);
   }
   .ml-10 {
     margin-left: calc(var(--spacing) * 10);
@@ -266,14 +273,14 @@
   .w-\[10vh\] {
     width: 10vh;
   }
-  .w-\[12vh\] {
-    width: 12vh;
-  }
   .w-\[15vh\] {
     width: 15vh;
   }
   .w-\[20px\] {
     width: 20px;
+  }
+  .w-\[20vh\] {
+    width: 20vh;
   }
   .w-\[30px\] {
     width: 30px;
@@ -292,6 +299,9 @@
   }
   .w-\[100px\] {
     width: 100px;
+  }
+  .w-\[170px\] {
+    width: 170px;
   }
   .w-\[180px\] {
     width: 180px;
@@ -380,15 +390,17 @@
   .rounded-xl {
     border-radius: var(--radius-xl);
   }
-  .border {
-    border-style: var(--tw-border-style);
-    border-width: 1px;
-  }
   .bg-\[\#0a1628\] {
     background-color: #0a1628;
   }
   .bg-cyan-500 {
     background-color: var(--color-cyan-500);
+  }
+  .bg-gray-700 {
+    background-color: var(--color-gray-700);
+  }
+  .bg-gray-800 {
+    background-color: var(--color-gray-800);
   }
   .bg-white {
     background-color: var(--color-white);
@@ -573,6 +585,13 @@
       }
     }
   }
+  .hover\:bg-gray-800 {
+    &:hover {
+      @media (hover: hover) {
+        background-color: var(--color-gray-800);
+      }
+    }
+  }
   .hover\:text-blue-800 {
     &:hover {
       @media (hover: hover) {
@@ -585,6 +604,11 @@
       @media (hover: hover) {
         color: var(--color-cyan-400);
       }
+    }
+  }
+  .sm\:mt-25 {
+    @media (width >= 40rem) {
+      margin-top: calc(var(--spacing) * 25);
     }
   }
   .sm\:w-\[250px\] {
@@ -602,9 +626,9 @@
       margin-top: calc(var(--spacing) * 0);
     }
   }
-  .md\:mt-40 {
+  .md\:mt-30 {
     @media (width >= 48rem) {
-      margin-top: calc(var(--spacing) * 40);
+      margin-top: calc(var(--spacing) * 30);
     }
   }
   .md\:mr-20 {
@@ -652,6 +676,11 @@
       width: 20vh;
     }
   }
+  .md\:w-\[25vh\] {
+    @media (width >= 48rem) {
+      width: 25vh;
+    }
+  }
   .md\:w-\[90vh\] {
     @media (width >= 48rem) {
       width: 90vh;
@@ -690,6 +719,11 @@
   .md\:justify-end {
     @media (width >= 48rem) {
       justify-content: flex-end;
+    }
+  }
+  .md\:gap-15 {
+    @media (width >= 48rem) {
+      gap: calc(var(--spacing) * 15);
     }
   }
   .md\:p-0 {
@@ -823,11 +857,6 @@
   inherits: false;
   initial-value: 0;
 }
-@property --tw-border-style {
-  syntax: "*";
-  inherits: false;
-  initial-value: solid;
-}
 @property --tw-gradient-position {
   syntax: "*";
   inherits: false;
@@ -953,7 +982,6 @@
       --tw-skew-y: initial;
       --tw-space-y-reverse: 0;
       --tw-space-x-reverse: 0;
-      --tw-border-style: solid;
       --tw-gradient-position: initial;
       --tw-gradient-from: #0000;
       --tw-gradient-via: #0000;
